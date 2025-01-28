@@ -22,10 +22,10 @@ print(sd.query_devices())
 
 #Load the tokenizer and the trained model
 #read in byte 
-with open("tokenizer_activation.pickle", "rb") as handling:
+with open("user_commands_recognition/tokenizer_activation.pickle", "rb") as handling:
     commmand_tokenizer = pickle.load(handling)
     
-tensor_model = tf.keras.models.load_model("activation_classification_model.h5")
+tensor_model = tf.keras.models.load_model("user_commands_recognition/activation_classification_model.h5")
 
 # Initialize Vosk model dowloaded in 
 try:
@@ -72,7 +72,7 @@ coordinatesx = 0
 coordinatesy = 0
 
 #acquire the location file 
-locations = pd.read_csv("places.csv")
+locations = pd.read_csv("user_commands_recognition/places.csv")
 
 
 

@@ -21,10 +21,10 @@ print(sd.query_devices())
 
 #Load the tokenizer and the trained model
 #read in byte 
-with open("tokenizer.pickle", "rb") as handling:
+with open("testing/tokenizer.pickle", "rb") as handling:
     commmand_tokenizer = pickle.load(handling)
     
-tensor_model = tf.keras.models.load_model("command_classification_model.h5")
+tensor_model = tf.keras.models.load_model("testing/command_classification_model.h5")
 
 
 

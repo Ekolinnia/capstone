@@ -57,11 +57,11 @@ print("\nTraining the model...")
 model.fit(commands__padded_sequences, np.array(labels), epochs=10, batch_size=2)
 
 #Save the trained model
-model.save("command_classification_model.h5")
+model.save("testing/command_classification_model.h5")
 print("saved model")
 
 #save the token 
-with open("tokenizer.pickle", "wb") as handle:
+with open("testing/tokenizer.pickle", "wb") as handle:
     pickle.dump(commands_token, handle, protocol=pickle.HIGHEST_PROTOCOL)
 print("Tokenizer saved to 'tokenizer.pickle'")
 
