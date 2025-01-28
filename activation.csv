@@ -1,9 +1,20 @@
 command,label
-hey stick,0
-take me to,1
+hey walking,0
+take me to home,1
+take me to hospital,1
+take me to grocery,1
+take me to work,1
+take me to school,1
 bring me to,1
 navigate me to,1
-navigate me ,1
-descriibe me,2
+navigate me,1
+describe me,2
 whats in front of me,2
-tell me the obstacles,2s
+what is in front of me,2
+tell me the obstacles,2
+tell me the obstacle,2
+what do you see,2
+describe what’s ahead,2
+list the obstacles,2
+show me the obstacles,2
+what are the obstacles,2

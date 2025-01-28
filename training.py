@@ -78,7 +78,9 @@ new_padded = pad_sequences(new_sequence, maxlen=10, padding="post")
 # Predict
 prediction = model.predict(new_padded)
 predicted_label = tf.argmax(prediction[0]).numpy()
+highest_probability = prediction[0][predicted_label] * 100 
 
 print("\nPrediction:")
 print(f"Command: {new_command[0]}")
 print(f"Predicted Label: {predicted_label}")
+print(f"With a percentage of: {highest_probability}")
