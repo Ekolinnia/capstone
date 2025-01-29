@@ -1,8 +1,9 @@
 #pip install sounddevice - Micorphone du PC
 #pip install vosk - convert input mic to text 
 #pip install queue
+#pip install pyttsx3
 #https://stackoverflow.com/questions/79253154/use-vosk-speech-recognition-with-python
-
+#/opt/miniconda3/envs/pytorch/bin/python -m pip install <package-name>
 
 import pickle
 import vosk
@@ -12,9 +13,18 @@ import json
 import queue
 import pandas as pd
 
+#model
 import tensorflow as tf
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
+
+#text to speech
+import pyttsx3
+
+#Setting up the text to speech
+#/opt/miniconda3/envs/pytorch/bin/python -m pip install <package-name>
+engine = pyttsx3.init()
+
 
 
 #print out available device to speak on 
@@ -107,6 +117,8 @@ def process_transcript():
                         #Start processing command if hear "hey stick"
                         if transcription.lower() == "hey walking":
                             print("Hi! How can I help you? ")
+                            engine.say("Hi! How can I help you? ")
+                            engine.runAndWait()
                             
                             while True:
                             # Wait for the next command 
@@ -116,6 +128,8 @@ def process_transcript():
                                     # Check if the user says "cancel"
                                     if transcription.lower() == "cancel":
                                         print("Cancelled. Waiting for 'hey Walking' again...")
+                                        engine.say("Cancelled. Waiting for 'hey Walking' again...")
+                                        engine.runAndWait()
                                         break 
                                 
                                     # convert trasncription as a single string
@@ -138,10 +152,15 @@ def process_transcript():
                                         if(coordinates):
                                             coordinatesx,coordinatesy = coordinates
                                             print(f"User has requested to go to {coordinatesx}, {coordinatesy}")
+                                            engine.say("User has requested to go to {coordinatesx}, {coordinatesy}")
+                                            engine.runAndWait()
                                             #go back to lsitening for hey walking
                                             break
                                         elif(predicted_label == 2):
                                             print("User requested to see whats in front")
+                                            engine.say("User requested to see whats in front")
+                                            engine.runAndWait()
+                                            
                                             break
                             
                                         else: 
