@@ -90,7 +90,7 @@ locations = pd.read_csv("user_commands_recognition/places.csv")
 def process_transcript():
     print("Listening... Speak into macbook microphone!")
     try:
-        with sd.RawInputStream(device=0,samplerate=16000, blocksize=1024, dtype='int16',
+        with sd.RawInputStream(device=1,samplerate=16000, blocksize=1024, dtype='int16',
                                channels=1, callback=audio_callback):
             print("Press Ctrl+C to stop.")
             #open a file 
