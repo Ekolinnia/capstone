@@ -14,7 +14,7 @@ import tensorflow as tf
 from tensorflow.keras import layers
 
 # Get the datasheet for activation
-data_train = pd.read_csv("user_commands_recognition/activation.csv", header= 0)
+data_train = pd.read_csv("activation.csv", header= 0)
 
 # Seperate the activation quotes and label for trainning
 commands = data_train["command"].tolist()
@@ -52,11 +52,11 @@ print("\nTraining the model...")
 model.fit(p_s_commands, np.array(labels), epochs=10, batch_size=2)
 
 #Save the trained model
-model.save("user_commands_recognition/activation_classification_model.h5")
+model.save("activation_classification_model.h5")
 print("saved model")
 
 #save the token 
-with open("user_commands_recognition/tokenizer_activation.pickle", "wb") as handle:
+with open("tokenizer_activation.pickle", "wb") as handle:
     pickle.dump(commands_token, handle, protocol=pickle.HIGHEST_PROTOCOL)
 print("Tokenizer saved")
 
