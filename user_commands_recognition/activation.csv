@@ -1,20 +1,63 @@
 command,label
-hey walking,0
+hey rebecca,0
+start listening,0
 take me to home,1
+bring me home,1
+navigate me home,1
+lead me home,1
+take me back home,1
+go to home,1
 take me to hospital,1
+bring me to the hospital,1
+navigate me to the hospital,1
+lead me to the hospital,1
+find the nearest hospital,1
 take me to grocery,1
+bring me to the grocery store,1
+navigate me to a grocery,1
+go to the grocery,1
+find a grocery store,1
 take me to work,1
+bring me to the office,1
+navigate me to my workplace,1
+go to my job,1
+find my workplace,1
 take me to school,1
+bring me to class,1
+navigate me to school,1
+go to school,1
+find my school,1
 bring me to,1
+lead me to,1
+take me somewhere,1
+take me to a location,1
+bring me to my destination,1
 navigate me to,1
-navigate me,1
+guide me to,1
+find directions to,1
+show me how to get to,1
+get me there,1
 describe me,2
+describe what’s around me,2
+describe my surroundings,2
+tell me what you see,2
 whats in front of me,2
+what is ahead of me,2
 what is in front of me,2
+what do you see in front,2
+what’s blocking my way,2
 tell me the obstacles,2
+tell me what’s in the way,2
+tell me what’s in front,2
 tell me the obstacle,2
 what do you see,2
+what can you detect,2
 describe what’s ahead,2
+describe the environment,2
 list the obstacles,2
 show me the obstacles,2
+tell me about the obstacles,2
 what are the obstacles,2
+are there any obstacles,2
+what objects are nearby,2
+are there any barriers,2

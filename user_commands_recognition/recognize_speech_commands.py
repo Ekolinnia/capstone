@@ -5,6 +5,11 @@
 #https://stackoverflow.com/questions/79253154/use-vosk-speech-recognition-with-python
 #/opt/miniconda3/envs/pytorch/bin/python -m pip install <package-name>
 
+#pi@raspberrypi:~ $ cd ~/Documents/capstone-1 
+#pi@raspberrypi:~/Documents/capstone-1 $ python3 -m venv myenv
+#pi@raspberrypi:~/Documents/capstone-1 $ source myenv/bin/activate
+#(myenv) pi@raspberrypi:~/Documents/capstone-1 $ pip install vosk
+
 import pickle
 import vosk
 import sounddevice as sd
@@ -12,6 +17,7 @@ import json
 #store the transcript
 import queue
 import pandas as pd
+import time
 
 #model
 import tensorflow as tf
@@ -39,7 +45,7 @@ tensor_model = tf.keras.models.load_model("user_commands_recognition/activation_
 
 # Initialize Vosk model dowloaded in 
 try:
-    model = vosk.Model("vosk-model-small-en-us-0.15") 
+    model = vosk.Model("vosk-model-en-us-0.22") 
     print("Model has loaded successfully")
 except Exception as e:
     print(f"Error loading model: {e}")
@@ -54,7 +60,7 @@ trasncript_queue = queue.Queue()
 def location_detector(transcription,location):
     #iterate through the rows of the file
     for _,row in location.iterrows():
-        if row["places"].lower() in transcription.lower():
+        if row["places"].lower() in transcription.lower().strip():
             return row["coordinatesx"], row["coordinatesy"]
     return None
 
@@ -115,10 +121,11 @@ def process_transcript():
                         highest_probability = prediction[0][predicted_label] * 100 
                         
                         #Start processing command if hear "hey stick"
-                        if transcription.lower() == "hey walking":
+                        if transcription.lower().strip() == "hey rebecca":
                             print("Hi! How can I help you? ")
                             engine.say("Hi! How can I help you? ")
                             engine.runAndWait()
+                            time.sleep(3)
                             
                             while True:
                             # Wait for the next command 
@@ -126,9 +133,9 @@ def process_transcript():
                                 if transcription:
                                 
                                     # Check if the user says "cancel"
-                                    if transcription.lower() == "cancel":
-                                        print("Cancelled. Waiting for 'hey Walking' again...")
-                                        engine.say("Cancelled. Waiting for 'hey Walking' again...")
+                                    if transcription.lower().strip() == "cancel":
+                                        print("Cancelled. Waiting for 'hey Rebecca' again...")
+                                        engine.say("Cancelled. Waiting for 'hey Rebecca' again...")
                                         engine.runAndWait()
                                         break 
                                 
@@ -143,7 +150,7 @@ def process_transcript():
                                     highest_probability = prediction[0][predicted_label] * 100   
                                       
                         
-                                    if highest_probability >= 30:
+                                    if highest_probability >= 40:
                                         print(f"Predicted command: {predicted_label} " )
                                         #Try to detect which location it is...
                                         #For now, set like 5 locations for the GPS....(which is saved in places.csv)
@@ -174,7 +181,7 @@ def process_transcript():
                                 #save transcription in a file
                                 file.write(transcription + "\n")
                         else: 
-                            print("Listening for hey Walking")
+                            print("Listening for hey Rebecca")
     except KeyboardInterrupt:
         print("Stopped listening.")
         
