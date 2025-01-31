@@ -51,7 +51,7 @@ except Exception as e:
     print(f"Error loading model: {e}")
     exit(1)
 # Initilaize regonization model 
-recognizer = vosk.KaldiRecognizer(model, 16000)
+recognizer = vosk.KaldiRecognizer(model, 48000)
 
 #Queue to store all transcription 
 trasncript_queue = queue.Queue()
@@ -96,7 +96,7 @@ locations = pd.read_csv("user_commands_recognition/places.csv")
 def process_transcript():
     print("Listening... Speak into macbook microphone!")
     try:
-        with sd.RawInputStream(device=0,samplerate=16000, blocksize=1024, dtype='int16',
+        with sd.RawInputStream(device=0,samplerate=48000, blocksize=1024, dtype='int16',
                                channels=1, callback=audio_callback):
             print("Press Ctrl+C to stop.")
             #open a file 
@@ -120,12 +120,12 @@ def process_transcript():
                         predicted_label = tf.argmax(prediction[0]).numpy()
                         highest_probability = prediction[0][predicted_label] * 100 
                         
-                        #Start processing command if hear "hey stick"
+                        #Start processing command if hear "hey rebecca"
                         if transcription.lower().strip() == "hey rebecca":
                             print("Hi! How can I help you? ")
                             engine.say("Hi! How can I help you? ")
                             engine.runAndWait()
-                            time.sleep(3)
+                            time.sleep(6)
                             
                             while True:
                             # Wait for the next command 
@@ -170,10 +170,11 @@ def process_transcript():
                                             
                                             break
                             
-                                        else: 
-                                            print(" No Location found...")
-                                            #go back to listening for hey walking
-                                            break
+                                        else:
+                                            count = 1
+                                            if count ==1: 
+                                                print(" No Location found/not recognize try again?... or say cancel")
+                                                continue
                                                     
                                     else:
                                         print(f"Please repeat....")  
@@ -191,8 +192,3 @@ def process_transcript():
 
 # Start transcription
 process_transcript()
-
-
-
-
-
