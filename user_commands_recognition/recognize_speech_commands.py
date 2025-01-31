@@ -45,7 +45,7 @@ tensor_model = tf.keras.models.load_model("user_commands_recognition/activation_
 
 # Initialize Vosk model dowloaded in 
 try:
-    model = vosk.Model("vosk-model-en-us-0.22") 
+    model = vosk.Model("vosk-model-small-en-us-0.15") 
     print("Model has loaded successfully")
 except Exception as e:
     print(f"Error loading model: {e}")
